@@ -48,28 +48,34 @@ echo ""
 echo "Generating reports in README for each module..."
 for module in $(ls modules); do
     {
-        echo "# $module"
-        echo "This is a dependency report for the $module module."
-        echo ""
-        echo "An initial [modulemd file]($module.yaml) has been generated. It is experimental and probably unusable at this point."
-        echo "## Dependencies"
-        echo "These are modules identified as dependencies."
-        echo "### Runtime"
-        echo "This list might not be complete. There might be other packages in the *Binary RPM packages (all arches combined)* section that needs to be split to different modules."
+        cat << EOF
+# $module
+This is a dependency report for the $module module.
+
+An initial [modulemd file]($module.yaml) has been generated. It is experimental and probably unusable at this point.
+## Dependencies
+These are modules identified as dependencies.
+### Runtime
+This list might not be complete. There might be other packages in the *Binary RPM packages (all arches combined)* section that needs to be split to different modules.
+EOF
         for dep in $(cat modules/$module/modular-deps.txt); do
             echo "* [$dep](../$dep)"
         done
-        echo "### Build"
-        echo "This list might not be complete."
-        echo "Please see the **missing RPM build dependencies ([source](all/buildtime-source-packages-short.txt) or [binary](all/buildtime-binary-packages-short.txt)) lists** for more information."
+        cat << EOF
+### Build
+This list might not be complete.
+Please see the **missing RPM build dependencies ([source](all/buildtime-source-packages-short.txt) or [binary](all/buildtime-binary-packages-short.txt)) lists** for more information.
+EOF
         for dep in $(cat modules/$module/modular-build-deps.txt); do
             echo "* [$dep](../$dep)"
         done
-        echo "## Binary RPM packages"
-        echo "These are RPM dependencies of the [$module top-level package set]($module.csv). They should be either:"
-        echo "* split into other modules and be used as modular dependncies"
-        echo "* included in this $module module"
-        echo "### Packages"
+        cat << EOF
+## Binary RPM packages
+These are RPM dependencies of the [$module top-level package set]($module.csv). They should be either:
+* split into other modules and be used as modular dependencies
+* included in this $module module
+### Packages
+EOF
 
         printf "| |"
         for arch in $(cat arches.txt); do
@@ -137,9 +143,11 @@ EOF
         rpms:
 EOF
         for pkg in $(cat modules/$module/all/runtime-source-packages-short.txt); do
-            echo "            $pkg:"
-            echo "                rationale: Generated."
-            echo "                ref: master."
+            cat << EOF
+            $pkg:
+                rationale: Generated.
+                ref: master.
+EOF
         done
     } > modules/$module/$module.yaml
 done
