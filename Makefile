@@ -11,54 +11,55 @@ platform:
 	@echo Generating $@.
 	@./deps2.sh $@ $^
 
-
-#installer: platform networking-base storage-devices platform-placeholder
-installer: platform platform-placeholder
+389-ds: platform platform-placeholder networking-base perl
 
 autotools: platform perl platform-placeholder
 
-systemtap: platform perl platform-placeholder
-
-perl: platform platform-placeholder
-
-networking-base: platform platform-placeholder
-
-storage-devices: platform platform-placeholder
-
-platform-placeholder: platform
+bind: platform platform-placeholder
 
 freeipa: platform platform-placeholder java perl 389-ds bind krb5 sssd samba pki tomcat resteasy httpd storage-devices
 
+httpd: platform platform-placeholder
+
+installer: platform platform-placeholder
+
 java: platform platform-placeholder
-
-389-ds: platform platform-placeholder networking-base perl
-
-bind: platform platform-placeholder
 
 krb5: platform platform-placeholder
 
-sssd: platform platform-placeholder samba
+networking-base: platform platform-placeholder
 
-samba: platform platform-placeholder
+perl: platform platform-placeholder
 
 pki: platform platform-placeholder java tomcat resteasy storage-devices
 
-tomcat: platform platform-placeholder
-
-resteasy: platform platform-placeholder
-
-httpd: platform platform-placeholder
+platform-placeholder: platform
 
 postgresql: platform platform-placeholder
 
-python3: platform platform-placeholder
+python2: platform platform-placeholder
 
 python3-bootstrap: platform platform-placeholder
 
-python3-ecosystem: platform platform-placeholder
-
 python3-ecosystem-bootstrap: platform platform-placeholder
 
-python2: platform platform-placeholder
+python3-ecosystem: platform platform-placeholder
+
+python3: platform platform-placeholder
+
+resteasy: platform platform-placeholder
+
+ruby: platform platform-placeholder
+
+samba: platform platform-placeholder
+
+sssd: platform platform-placeholder samba
+
+storage-devices: platform platform-placeholder
 
 storaged: platform platform-placeholder
+
+systemtap: platform perl platform-placeholder
+
+tomcat: platform platform-placeholder
+
