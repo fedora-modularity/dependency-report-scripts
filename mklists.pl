@@ -7,6 +7,7 @@ use Getopt::Std;
 use List::Util 1.33 qw/none/;
 use Text::CSV_XS qw/csv/;
 use Data::Dumper;
+use File::Path qw/make_path/;
 
 my $module = undef;
 my $package = undef;
@@ -23,17 +24,18 @@ my %arches = map { $_ => 1 }
     qw/aarch64 armv7hl i686 ppc64 ppc64le x86_64 s390x/;
 
 sub HELP_MESSAGE {
-    print "Usage: mklists.pl -r REPO_NAME\n";
+    print "Usage: mklists.pl -t topdir -r REPO_NAME\n";
     print "Select what module lists should be generated.\n";
     exit;
 }
 
 my %opts;
-getopts('r:', \%opts);
+getopts('r:t:', \%opts);
 my $repo = $opts{r} or HELP_MESSAGE;
+my $topdir = $opts{t} or HELP_MESSAGE;
 
 
-open my $fh, '<', "${repo}/README.md";
+open my $fh, '<', "${topdir}/${repo}/README.md";
 while (<$fh>) {
     chomp;
     if (/^#{3}\s\`(?<module>[^`]+)\`$/) {
@@ -91,13 +93,13 @@ while (<$fh>) {
 }
 close $fh;
 
-mkdir "modules" unless -d "modules";
+make_path "${topdir}/modules" unless -d "${topdir}/modules";
 
 for my $module (keys %modules) {
-    mkdir "modules/${module}" unless -d "modules/${module}";
+    mkdir "${topdir}/modules/${module}" unless -d "${topdir}/modules/${module}";
     for my $arch (keys %arches) {
-        mkdir "modules/${module}/${arch}" unless -d "modules/${module}/${arch}";
-        open $fh, '>', "modules/${module}/${arch}/toplevel-binary-packages.txt";
+        mkdir "${topdir}/modules/${module}/${arch}" unless -d "${topdir}/modules/${module}/${arch}";
+        open $fh, '>', "${topdir}/modules/${module}/${arch}/toplevel-binary-packages.txt";
         for my $pkg (keys %{ $modules{$module} } ) {
             next if @{ $modules{$module}->{$pkg}->{arches} } and
                     not ($arch ~~ $modules{$module}->{$pkg}->{arches});
@@ -113,5 +115,5 @@ for $module (keys %modules) {
             { [ $_, $modules{$module}->{$_}->{rationale} ] }
             sort keys %{ $modules{$module} }
         ],
-        out => "modules/${module}/${module}.csv";
+        out => "${topdir}/modules/${module}/${module}.csv";
 }
