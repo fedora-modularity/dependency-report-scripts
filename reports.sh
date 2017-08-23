@@ -1,27 +1,30 @@
 #!/bin/sh
+
+source ./config.sh
+
 arches=$(cat arches.txt)
-base=modules
+base="$topdir/modules"
 
 echo ""
 echo "Visualizing dependencies between modules..."
 
-mkdir -p img
-> img/module-deps.dot
-echo "digraph G {" >> img/module-deps.dot
-echo "  node [fontname=monospace];" >> img/module-deps.dot
+mkdir -p "$topdir/img"
+> "$topdir/img/module-deps.dot"
+echo "digraph G {" >> "$topdir/img/module-deps.dot"
+echo "  node [fontname=monospace];" >> "$topdir/img/module-deps.dot"
 
-for module in $(ls modules); do
-    for dep in $(cat modules/$module/modular-deps.txt); do
-        echo "  \"$module\" -> \"$dep\" [color=\"#009900\"];" >> img/module-deps.dot
+for module in $(ls "$topdir/modules"); do
+    for dep in $(cat "$topdir/modules/$module/modular-deps.txt"); do
+        echo "  \"$module\" -> \"$dep\" [color=\"#009900\"];" >> "$topdir/img/module-deps.dot"
     done 
-    for dep in $(cat modules/$module/modular-build-deps.txt); do
-        echo "  \"$module\" -> \"$dep\" [color=\"#aa0000\"];" >> img/module-deps.dot
+    for dep in $(cat "$topdir/modules/$module/modular-build-deps.txt"); do
+        echo "  \"$module\" -> \"$dep\" [color=\"#aa0000\"];" >> "$topdir/img/module-deps.dot"
     done 
 done
 
-echo "}" >> img/module-deps.dot
+echo "}" >> "$topdir/img/module-deps.dot"
 
-dot -Tpng img/module-deps.dot > img/module-deps.png
+dot -Tpng "$topdir/img/module-deps.dot" > "$topdir/img/module-deps.png"
 
 
 echo ""
@@ -34,7 +37,7 @@ files="
     runtime-source-packages-full.txt"
 
 for file in $files; do
-    for module in $(ls modules); do
+    for module in $(ls "$topdir/modules"); do
         mkdir -p $base/$module/all
         for arch in $arches; do
             cat $base/$module/$arch/$file
@@ -46,7 +49,7 @@ done
          
 echo ""
 echo "Generating reports in README for each module..."
-for module in $(ls modules); do
+for module in $(ls "$topdir/modules"); do
     {
         cat << EOF
 # $module
@@ -58,7 +61,7 @@ These are modules identified as dependencies.
 ### Runtime
 This list might not be complete. There might be other packages in the *Binary RPM packages (all arches combined)* section that needs to be split to different modules.
 EOF
-        for dep in $(cat modules/$module/modular-deps.txt); do
+        for dep in $(cat "$topdir/modules/$module/modular-deps.txt"); do
             echo "* [$dep](../$dep)"
         done
         cat << EOF
@@ -66,7 +69,7 @@ EOF
 This list might not be complete.
 Please see the **missing RPM build dependencies ([source](all/buildtime-source-packages-short.txt) or [binary](all/buildtime-binary-packages-short.txt)) lists** for more information.
 EOF
-        for dep in $(cat modules/$module/modular-build-deps.txt); do
+        for dep in $(cat "$topdir/modules/$module/modular-build-deps.txt"); do
             echo "* [$dep](../$dep)"
         done
         cat << EOF
@@ -89,10 +92,10 @@ EOF
         done
         printf "\n"
 
-        for pkg in $(cat modules/$module/all/runtime-binary-packages-short.txt); do
+        for pkg in $(cat "$topdir/modules/$module/all/runtime-binary-packages-short.txt"); do
             printf "| \`$pkg\` |"
             for arch in $(cat arches.txt); do
-                cat modules/$module/$arch/runtime-binary-packages-short.txt | grep "^$pkg$" > /dev/null
+                cat "$topdir/modules/$module/$arch/runtime-binary-packages-short.txt" | grep "^$pkg$" > /dev/null
                 if [ $? -eq 0 ]; then
                     printf " X |"
                 else
@@ -101,13 +104,13 @@ EOF
             done
             printf "\n"
         done
-    } > modules/$module/README.md
+    } > "$topdir/modules/$module/README.md"
 done
 
 echo ""
 echo "Generating modulemd files..."
 
-modulemd_modules=$(ls modules \
+modulemd_modules=$(ls "$topdir/modules" \
     | sed \
         -e "s/^bootstrap$//g" \
         -e "s/^platform$//g" \
@@ -125,13 +128,13 @@ data:
     dependencies:
         buildrequires:
 EOF
-        for dep in $(cat modules/$module/modular-build-deps.txt); do
+        for dep in $(cat "$topdir/modules/$module/modular-build-deps.txt"); do
             echo "            $dep: master"
         done
         cat << EOF
         requires:
 EOF
-        for dep in $(cat modules/$module/modular-deps.txt); do
+        for dep in $(cat "$topdir/modules/$module/modular-deps.txt"); do
             echo "            $dep: master"
         done
         cat << EOF
@@ -142,13 +145,13 @@ EOF
     components:
         rpms:
 EOF
-        for pkg in $(cat modules/$module/all/runtime-source-packages-short.txt); do
+        for pkg in $(cat "$topdir/modules/$module/all/runtime-source-packages-short.txt"); do
             cat << EOF
             $pkg:
                 rationale: Generated.
                 ref: master.
 EOF
         done
-    } > modules/$module/$module.yaml
+    } > "$topdir/modules/$module/$module.yaml"
 done
 

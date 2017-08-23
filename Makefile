@@ -1,4 +1,7 @@
-all: $(notdir $(wildcard modules/*)) ;
+THISDIR=$(dir $(lastword $(MAKEFILE_LIST)))
+TOPDIR=$(shell source $(THISDIR)/config.sh && echo "$$topdir")
+
+all: $(notdir $(wildcard $(TOPDIR)/modules/*)) ;
 
 platform:
 	@echo Configuring platform.

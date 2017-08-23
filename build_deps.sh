@@ -1,4 +1,7 @@
 #!/bin/sh
+
+source ./config.sh
+
 arches=$(cat arches.txt)
 files="
     binary-packages-full.txt
@@ -8,7 +11,7 @@ files="
 target=$1
 shift
 deps=$@
-base=modules
+base="$topdir/modules"
 
 for file in $files; do
     for arch in $arches; do

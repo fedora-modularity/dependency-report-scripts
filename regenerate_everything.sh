@@ -1,10 +1,12 @@
 #!/bin/sh
 
+source ./config.sh
+
 echo ""
 echo "========================================="
 echo "Removing old data..."
 echo "========================================="
-rm -rf modules repos
+rm -rf "$topdir/modules" "$topdir/repos"
 
 echo ""
 echo "========================================="

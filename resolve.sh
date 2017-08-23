@@ -1,10 +1,12 @@
 #!/bin/sh
 
+source ./config.sh
+
 WHAT="$1"
 
 case "$WHAT" in 
     buildtime)
-        modules=$(ls modules \
+        modules=$(ls "$topdir/modules" \
             | sed \
                 -e "s/^bootstrap$//g" \
                 -e "s/^platform$//g" \
@@ -15,7 +17,7 @@ case "$WHAT" in
         }
         ;;
     runtime)
-        modules=$(ls modules \
+        modules=$(ls "$topdir/modules" \
             | sed \
                 -e "s/^bootstrap$//g" \
                 -e "s/^platform$//g")
@@ -36,7 +38,7 @@ resolve_arch() {
 
     for module in $modules; do
 
-        modulearchroot="modules/$module/$arch"
+        modulearchroot="$topdir/modules/$module/$arch"
 
         # clear existing files
         > $modulearchroot/complete-$WHAT-binary-packages-full.txt
@@ -45,7 +47,7 @@ resolve_arch() {
         > $modulearchroot/complete-$WHAT-source-packages-short.txt
 
         echo "  Processing $WHAT deps of $module for $arch..."
-        hintsfile="hp/$arch/hints.txt"
+        hintsfile="$topdir/hp/$arch/hints.txt"
         hints=""
         while read hint; do
             hints+="--hint $hint "
@@ -89,7 +91,7 @@ echo "Done. Sorting out Platform module dependencies."
 for arch in $(cat arches.txt); do
     for module in $modules; do
 
-        modulearchroot="modules/$module/$arch"
+        modulearchroot="$topdir/modules/$module/$arch"
 
         # clear existing files
         > $modulearchroot/standalone-$WHAT-binary-packages-full.txt
@@ -97,15 +99,15 @@ for arch in $(cat arches.txt); do
         > $modulearchroot/standalone-$WHAT-binary-packages-short.txt
         > $modulearchroot/standalone-$WHAT-source-packages-short.txt
 
-        sort -o hp/$arch/runtime-source-packages-full.txt hp/$arch/runtime-source-packages-full.txt
-        sort -o hp/$arch/runtime-binary-packages-full.txt hp/$arch/runtime-binary-packages-full.txt
-        sort -o hp/$arch/runtime-source-packages-short.txt hp/$arch/runtime-source-packages-short.txt
-        sort -o hp/$arch/runtime-binary-packages-short.txt hp/$arch/runtime-binary-packages-short.txt
+        sort -o "$topdir/hp/$arch/runtime-source-packages-full.txt" "$topdir/hp/$arch/runtime-source-packages-full.txt"
+        sort -o "$topdir/hp/$arch/runtime-binary-packages-full.txt" "$topdir/hp/$arch/runtime-binary-packages-full.txt"
+        sort -o "$topdir/hp/$arch/runtime-source-packages-short.txt" "$topdir/hp/$arch/runtime-source-packages-short.txt"
+        sort -o "$topdir/hp/$arch/runtime-binary-packages-short.txt" "$topdir/hp/$arch/runtime-binary-packages-short.txt"
 
-        comm -13 hp/$arch/runtime-binary-packages-full.txt $modulearchroot/complete-$WHAT-binary-packages-full.txt > $modulearchroot/standalone-$WHAT-binary-packages-full.txt
-        comm -13 hp/$arch/runtime-source-packages-full.txt $modulearchroot/complete-$WHAT-source-packages-full.txt > $modulearchroot/standalone-$WHAT-source-packages-full.txt
-        comm -13 hp/$arch/runtime-binary-packages-short.txt $modulearchroot/complete-$WHAT-binary-packages-short.txt > $modulearchroot/standalone-$WHAT-binary-packages-short.txt
-        comm -13 hp/$arch/runtime-source-packages-short.txt $modulearchroot/complete-$WHAT-source-packages-short.txt > $modulearchroot/standalone-$WHAT-source-packages-short.txt
+        comm -13 "$topdir/hp/$arch/runtime-binary-packages-full.txt" $modulearchroot/complete-$WHAT-binary-packages-full.txt > $modulearchroot/standalone-$WHAT-binary-packages-full.txt
+        comm -13 "$topdir/hp/$arch/runtime-source-packages-full.txt" $modulearchroot/complete-$WHAT-source-packages-full.txt > $modulearchroot/standalone-$WHAT-source-packages-full.txt
+        comm -13 "$topdir/hp/$arch/runtime-binary-packages-short.txt" $modulearchroot/complete-$WHAT-binary-packages-short.txt > $modulearchroot/standalone-$WHAT-binary-packages-short.txt
+        comm -13 "$topdir/hp/$arch/runtime-source-packages-short.txt" $modulearchroot/complete-$WHAT-source-packages-short.txt > $modulearchroot/standalone-$WHAT-source-packages-short.txt
 
         awk 'NR==FNR{x++} END{ if(x!=FNR){exit 1} }' $modulearchroot/standalone-$WHAT-binary-packages-full.txt $modulearchroot/standalone-$WHAT-binary-packages-short.txt
         RC=$?

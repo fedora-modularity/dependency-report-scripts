@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source ./config.sh
+
 module=$1
 
 echo "Generating modulemd for $module"
@@ -15,13 +17,13 @@ license:
 dependencies:
     buildrequires:
 EOF
-    for dep in $(cat modules/$module/modular-build-deps.txt); do
+    for dep in $(cat "$topdir/modules/$module/modular-build-deps.txt"); do
         echo "            $dep: master"
     done
     cat << EOF
     requires:
 EOF
-    for dep in $(cat modules/$module/modular-deps.txt); do
+    for dep in $(cat "$topdir/modules/$module/modular-deps.txt"); do
         echo "            $dep: master"
     done
     cat << EOF
@@ -32,7 +34,7 @@ references:
 components:
     rpms:
 EOF
-    for pkg in $(cat modules/$module/all/runtime-source-packages-full.txt); do
+    for pkg in $(cat "$topdir/modules/$module/all/runtime-source-packages-full.txt"); do
         echo "            ${pkg%-*-*}:"
         echo "                rationale: Generated."
         ref=$(./get_package_hashes.py $(echo $pkg | sed -e "s/\(.*\).src$/\1/") | sed -e "s/^.*:\([^)]*\))/\1/")
@@ -42,4 +44,4 @@ EOF
             echo "                ref: master"
         fi
     done
-} > modules/$module/$module.yaml
+} > "$topdir/modules/$module/$module.yaml"

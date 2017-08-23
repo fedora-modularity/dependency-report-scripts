@@ -1,7 +1,9 @@
 #!/bin/sh
 
+source ./config.sh
+
 arches=$(cat arches.txt)
-modules=$(ls modules | sed \
+modules=$(ls "$topdir/modules" | sed \
                         -e "s/^bootstrap$//g" \
                         -e "s/^platform$//g")
 
@@ -10,9 +12,9 @@ for module in $modules; do
     echo "  Processing $module module..."
     for arch in $arches; do
         grep -F -f \
-            modules/$module/$arch/runtime-binary-packages-full.txt \
-            modules/$module/$arch/depchase-runtime-relations.txt \
-            > modules/$module/$arch/relations-runtime.txt
+            "$topdir/modules/$module/$arch/runtime-binary-packages-full.txt" \
+            "$topdir/modules/$module/$arch/depchase-runtime-relations.txt" \
+            > "$topdir/modules/$module/$arch/relations-runtime.txt"
 
         {
             pkg=NONE
@@ -23,17 +25,17 @@ for module in $modules; do
                 else
                     pkg=$line
                 fi
-            done < modules/$module/$arch/relations-runtime.txt
-        } | sort -u > modules/$module/$arch/graph.txt
-        echo "strict digraph G {" > modules/$module/$arch/graph.dot
-        echo "node [fontname=monospace];" >> modules/$module/$arch/graph.dot
-        cat modules/$module/$arch/graph.txt >> modules/$module/$arch/graph.dot
-        echo "}" >> modules/$module/$arch/graph.dot
-        START=7; cat modules/$module/$arch/graph.dot \
+            done < "$topdir/modules/$module/$arch/relations-runtime.txt"
+        } | sort -u > "$topdir/modules/$module/$arch/graph.txt"
+        echo "strict digraph G {" > "$topdir/modules/$module/$arch/graph.dot"
+        echo "node [fontname=monospace];" >> "$topdir/modules/$module/$arch/graph.dot"
+        cat "$topdir/modules/$module/$arch/graph.txt" >> "$topdir/modules/$module/$arch/graph.dot"
+        echo "}" >> "$topdir/modules/$module/$arch/graph.dot"
+        START=7; cat "$topdir/modules/$module/$arch/graph.dot" \
             | sfdp -Gstart=$START -Goverlap=prism \
             | gvmap -e -d $START \
             | neato -Gstart=$START -n -Ecolor="#44444455" -Tsvg \
-            > modules/$module/$arch/graph.svg
+            > "$topdir/modules/$module/$arch/graph.svg"
     done
 done
 
