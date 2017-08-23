@@ -10,6 +10,12 @@ rm -rf "$topdir/modules" "$topdir/repos"
 
 echo ""
 echo "========================================="
+echo "Cloning hp and bootstrap repositories..."
+echo "========================================="
+./get_hp.sh
+
+echo ""
+echo "========================================="
 echo "Cloning 'modularity-modules' repositories..."
 echo "========================================="
 ./clone_repos.sh
