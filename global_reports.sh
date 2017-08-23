@@ -86,7 +86,7 @@ For more details **individual modules** and **architecture-specific** informatio
 ## There are $(ls modules | wc -l) modules:
 ![module-deps](../img/module-deps.png)
 
-| Module | RPM compnents | RPMs missing in buildroot |
+| Module | RPM components | RPMs missing in buildroot |
 |---|---|---|
 EOF
 

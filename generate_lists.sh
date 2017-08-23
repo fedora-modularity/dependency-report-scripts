@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Generating top-level package lits:"
+echo "Generating top-level package lists:"
 for repo in $(cat module-repolist.txt); do
     echo "  Processing $repo repository"
     perl mklists.pl -r repos/$repo
