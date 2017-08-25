@@ -4,19 +4,19 @@
 # Defaults go here. These will be eval'ed, therefore use single quotes.
 
 CONFIG_DEFAULTS='
-topdir=${thisdir}/output
+topdir=${here}/output
 '
 
 # No user-serviceable parts below.
 
 # Needs to be a function for 'local' to work.
 _configure_the_things() {
-    local thisdir="$(dirname "$BASH_SOURCE")"
+    local here="$(dirname "$BASH_SOURCE")"
 
     local topdir_override="${topdir:-}"
 
-    if [ -e "$thisdir/config_local.sh" ]; then
-        source "$thisdir/config_local.sh"
+    if [ -e "$here/config_local.sh" ]; then
+        source "$here/config_local.sh"
     fi
 
     eval "$(echo "$CONFIG_DEFAULTS" | sed -e 's/^\([^=]\+\)=\(.*\)/local \1_default=\2/g')"
