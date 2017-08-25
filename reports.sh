@@ -122,7 +122,7 @@ document: modulemd
 version: 1
 data:
     summary: $module module
-    description: This $module has been generated
+    description: This $module module has been generated.
     license:
         module: [ MIT ]
     dependencies:
