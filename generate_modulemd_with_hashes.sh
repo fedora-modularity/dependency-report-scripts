@@ -18,13 +18,13 @@ dependencies:
     buildrequires:
 EOF
     for dep in $(cat "$topdir/modules/$module/modular-build-deps.txt"); do
-        echo "            $dep: master"
+        echo "            $dep: $buildrequires_ref"
     done
     cat << EOF
     requires:
 EOF
     for dep in $(cat "$topdir/modules/$module/modular-deps.txt"); do
-        echo "            $dep: master"
+        echo "            $dep: $requires_ref"
     done
     cat << EOF
 references:
@@ -41,7 +41,7 @@ EOF
         if [ -n "$ref" ]; then
             echo "                ref: $ref"
         else
-            echo "                ref: master"
+            echo "                ref: $components_ref"
         fi
     done
 } > "$topdir/modules/$module/$module.yaml"
