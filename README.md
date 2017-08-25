@@ -1,3 +1,7 @@
+This README is currently shared between [dependency-reports-scripts](https://github.com/fedora-modularity/dependency-report-scripts) (the scripts) and [dependency-reports](https://github.com/fedora-modularity/dependency-report) (the output).
+
+---
+
 # Modularity dependency reports
 
 This repository contains scripts to generate dependencies of the initial set of modules in F27.
