@@ -149,7 +149,7 @@ EOF
             cat << EOF
             $pkg:
                 rationale: Generated.
-                ref: master.
+                ref: master
 EOF
         done
     } > "$topdir/modules/$module/$module.yaml"
