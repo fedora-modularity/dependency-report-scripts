@@ -14,8 +14,8 @@ source ./config.sh
 ./build_deps.sh perl        platform platform-placeholder systemtap
 ./build_deps.sh pki         platform platform-placeholder java perl 
 ./build_deps.sh postgresql  platform platform-placeholder perl
-./build_deps.sh python2     platform platform-placeholder
-./build_deps.sh python3     platform platform-placeholder python3-bootstrap
+./build_deps.sh python2     platform platform-placeholder X11-base
+./build_deps.sh python3     platform platform-placeholder python3-bootstrap X11-base
 ./build_deps.sh python3-bootstrap    platform platform-placeholder
 ./build_deps.sh python3-ecosystem    platform platform-placeholder
 ./build_deps.sh python3-ecosystem-bootstrap    platform platform-placeholder python3-ecosystem-bootstrap
@@ -27,6 +27,7 @@ source ./config.sh
 ./build_deps.sh storaged    platform platform-placeholder python2 python3 perl autotools
 ./build_deps.sh systemtap   platform platform-placeholder autotools perl
 ./build_deps.sh tomcat      platform platform-placeholder autotools perl java
+./build_deps.sh X11-base    platform platform-placeholder autotools
 
 # I don't need build deps for these...
 excluded="platform platform-placeholder bootstrap"

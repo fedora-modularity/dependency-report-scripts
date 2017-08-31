@@ -21,3 +21,4 @@ storage-devices
 storaged
 systemtap
 tomcat
+X11-base

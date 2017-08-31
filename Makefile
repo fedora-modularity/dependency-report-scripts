@@ -63,3 +63,4 @@ systemtap: platform perl platform-placeholder
 
 tomcat: platform platform-placeholder
 
+X11-base: platform platform-placeholder
