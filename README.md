@@ -65,7 +65,7 @@ Add a `repos.cfg` to this `dependency-report` repository. You can find it in the
 ```
 $ ls 
 baseruntime-package-lists    dependency-report
-$ cp baseruntime-package-lists/repo/Fedora-devel-GA-repos.cfg dependency-report/repos.cfg
+$ cp baseruntime-package-lists/repo/Fedora-devel-GA-repos.cfg dependency-report-scripts/repos.cfg
 ```
 
 Now you can run all the scripts in this repo.
