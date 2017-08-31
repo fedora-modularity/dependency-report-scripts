@@ -27,7 +27,7 @@ java: platform platform-placeholder
 
 krb5: platform platform-placeholder
 
-networking-base: platform platform-placeholder
+networking-base: platform platform-placeholder perl
 
 perl: platform platform-placeholder
 
