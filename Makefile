@@ -19,9 +19,11 @@ bind: platform platform-placeholder
 
 freeipa: platform platform-placeholder java perl 389-ds bind krb5 sssd samba pki tomcat resteasy httpd storage-devices
 
+hardware-support: platform platform-placeholder
+
 httpd: platform platform-placeholder
 
-installer: platform platform-placeholder
+installer: platform platform-placeholder hardware-support
 
 java: platform platform-placeholder
 

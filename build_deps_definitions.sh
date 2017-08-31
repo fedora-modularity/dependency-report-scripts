@@ -6,6 +6,7 @@ source ./config.sh
 ./build_deps.sh autotools   bootstrap
 ./build_deps.sh bind        bootstrap
 ./build_deps.sh freeipa     bootstrap
+./build_deps.sh hardware-support  bootstrap
 ./build_deps.sh httpd       bootstrap
 ./build_deps.sh installer   bootstrap
 ./build_deps.sh java        bootstrap

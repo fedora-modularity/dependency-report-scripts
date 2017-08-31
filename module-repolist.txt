@@ -2,6 +2,7 @@
 autotools
 bind
 freeipa
+hardware-support
 httpd
 installer
 java
