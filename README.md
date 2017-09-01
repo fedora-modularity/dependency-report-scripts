@@ -44,6 +44,12 @@ Right now, the **following modules are included**. This image is automatically g
 
 ### Installation 
 
+Get the **dependencies** for depchase and the scripts:
+
+```
+$ sudo dnf install "perl(autodie)" "perl(Getopt::Std)" "perl(List::Util)" "perl(Text::CSV_XS)" "perl(Data::Dumper)" "perl(File::Path)" python3-solv python3-smartcols python3-click
+```
+
 These scripts require you to have **depchase** installed:
 
 ```
