@@ -11,7 +11,9 @@ platform:
 	@echo Generating $@.
 	@./deps2.sh $@ $^
 
-389-ds: platform platform-placeholder networking-base perl
+389-ds: platform platform-placeholder networking-base perl storage-devices
+
+apache-commons: platform platform-placeholder
 
 autotools: platform perl platform-placeholder
 
@@ -35,7 +37,7 @@ networking-base: platform platform-placeholder perl
 
 perl: platform platform-placeholder
 
-pki: platform platform-placeholder java tomcat resteasy storage-devices
+pki: platform platform-placeholder java tomcat resteasy storage-devices apache-commons
 
 platform-placeholder: platform
 
@@ -51,7 +53,7 @@ python3-ecosystem: platform platform-placeholder
 
 python3: platform platform-placeholder
 
-resteasy: platform platform-placeholder
+resteasy: platform platform-placeholder java apache-commons
 
 ruby: platform platform-placeholder
 
@@ -59,12 +61,12 @@ samba: platform platform-placeholder
 
 sssd: platform platform-placeholder samba
 
-storage-devices: platform platform-placeholder
+storage-devices: platform platform-placeholder perl
 
 storaged: platform platform-placeholder
 
 systemtap: platform perl platform-placeholder
 
-tomcat: platform platform-placeholder
+tomcat: platform platform-placeholder java apache-commons
 
 X11-base: platform platform-placeholder
