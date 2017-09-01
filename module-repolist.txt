@@ -1,6 +1,7 @@
 389-ds
 autotools
 bind
+fonts
 freeipa
 hardware-support
 httpd

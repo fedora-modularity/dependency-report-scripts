@@ -17,6 +17,8 @@ autotools: platform perl platform-placeholder
 
 bind: platform platform-placeholder
 
+fonts: platform platform-placeholder
+
 freeipa: platform platform-placeholder java perl 389-ds bind krb5 sssd samba pki tomcat resteasy httpd storage-devices
 
 hardware-support: platform platform-placeholder
@@ -25,7 +27,7 @@ httpd: platform platform-placeholder
 
 installer: platform platform-placeholder hardware-support
 
-java: platform platform-placeholder
+java: platform platform-placeholder fonts
 
 krb5: platform platform-placeholder
 
@@ -39,9 +41,9 @@ platform-placeholder: platform
 
 postgresql: platform platform-placeholder
 
-python2: platform platform-placeholder
+python2: platform platform-placeholder fonts
 
-python3-bootstrap: platform platform-placeholder
+python3-bootstrap: platform platform-placeholder fonts
 
 python3-ecosystem-bootstrap: platform platform-placeholder
 
