@@ -53,7 +53,7 @@ python3-ecosystem-bootstrap: platform platform-placeholder
 
 python3-ecosystem: platform platform-placeholder python3
 
-python3: platform platform-placeholder
+python3: platform platform-placeholder fonts
 
 resteasy: platform platform-placeholder java apache-commons
 
@@ -71,4 +71,4 @@ tomcat: platform platform-placeholder java apache-commons
 
 udisks2: platform platform-placeholder krb5 python3
 
-X11-base: platform platform-placeholder
+X11-base: platform platform-placeholder fonts
