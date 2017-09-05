@@ -11,7 +11,7 @@ platform:
 	@echo Generating $@.
 	@./deps2.sh $@ $^
 
-389-ds: platform platform-placeholder networking-base perl python3 python3-ecosystem
+389-ds: platform platform-placeholder networking-base perl python3 python3-ecosystem bind
 
 apache-commons: platform platform-placeholder java
 
