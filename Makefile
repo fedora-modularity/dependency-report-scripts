@@ -59,7 +59,7 @@ resteasy: platform platform-placeholder java apache-commons
 
 ruby: platform platform-placeholder
 
-samba: platform platform-placeholder
+samba: platform platform-placeholder python2 python2-ecosystem
 
 sssd: platform platform-placeholder samba python3 python3-ecosystem
 
