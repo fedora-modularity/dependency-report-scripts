@@ -21,7 +21,6 @@ ruby
 samba
 sssd
 storage-devices
-storaged
 systemtap
 tomcat
 X11-base

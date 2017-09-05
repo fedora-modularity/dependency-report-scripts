@@ -26,7 +26,6 @@ source ./config.sh
 ./build_deps.sh samba       bootstrap
 ./build_deps.sh sssd        bootstrap
 ./build_deps.sh storage-devices bootstrap
-./build_deps.sh storaged    bootstrap
 ./build_deps.sh systemtap   bootstrap
 ./build_deps.sh tomcat      bootstrap
 ./build_deps.sh X11-base    bootstrap

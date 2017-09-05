@@ -63,8 +63,6 @@ sssd: platform platform-placeholder samba
 
 storage-devices: platform platform-placeholder perl
 
-storaged: platform platform-placeholder
-
 systemtap: platform perl platform-placeholder
 
 tomcat: platform platform-placeholder java apache-commons
