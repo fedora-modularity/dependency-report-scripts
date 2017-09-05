@@ -67,4 +67,6 @@ systemtap: platform perl platform-placeholder
 
 tomcat: platform platform-placeholder java apache-commons
 
+udisks2: platform platform-placeholder krb5 python3
+
 X11-base: platform platform-placeholder

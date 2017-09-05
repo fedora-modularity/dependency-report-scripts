@@ -30,6 +30,7 @@ source ./config.sh
 ./build_deps.sh storage-devices bootstrap
 ./build_deps.sh systemtap   bootstrap
 ./build_deps.sh tomcat      bootstrap
+./build_deps.sh udisks2     bootstrap
 ./build_deps.sh X11-base    bootstrap
 
 # I don't need build deps for these...

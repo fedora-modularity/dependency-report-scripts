@@ -23,4 +23,5 @@ sssd
 storage-devices
 systemtap
 tomcat
+udisks2
 X11-base
