@@ -3,6 +3,7 @@
 source ./config.sh
 
 ./build_deps.sh 389-ds      bootstrap
+./build_deps.sh apache-commons   bootstrap
 ./build_deps.sh autotools   bootstrap
 ./build_deps.sh bind        bootstrap
 ./build_deps.sh fonts       bootstrap
@@ -17,6 +18,7 @@ source ./config.sh
 ./build_deps.sh pki         bootstrap
 ./build_deps.sh postgresql  bootstrap
 ./build_deps.sh python2     bootstrap
+./build_deps.sh python2-ecosystem    bootstrap
 ./build_deps.sh python3     bootstrap
 ./build_deps.sh python3-bootstrap    bootstrap
 ./build_deps.sh python3-ecosystem    bootstrap
