@@ -125,7 +125,8 @@ data:
     summary: $module module
     description: This $module module has been generated.
     license:
-        module: [ MIT ]
+        module:
+            - MIT
     dependencies:
         buildrequires:
 EOF

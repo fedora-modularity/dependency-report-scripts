@@ -29,7 +29,7 @@ httpd: platform platform-placeholder
 
 installer: platform platform-placeholder hardware-support
 
-java: platform platform-placeholder fonts
+java: platform platform-placeholder fonts X11-base
 
 krb5: platform platform-placeholder
 
