@@ -60,7 +60,8 @@ echo ""
 echo "========================================="
 echo "Generating runtime package dependency graph for all modules..."
 echo "========================================="
-./graph.sh
+#./graph.sh
+echo "  - temporarily disabled"
 
 echo ""
 echo "========================================="

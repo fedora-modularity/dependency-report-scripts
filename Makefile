@@ -13,7 +13,7 @@ platform:
 
 389-ds: platform platform-placeholder networking-base perl python3 python3-ecosystem
 
-apache-commons: platform platform-placeholder
+apache-commons: platform platform-placeholder java
 
 autotools: platform perl platform-placeholder
 
