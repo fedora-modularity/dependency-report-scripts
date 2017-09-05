@@ -11,17 +11,17 @@ platform:
 	@echo Generating $@.
 	@./deps2.sh $@ $^
 
-389-ds: platform platform-placeholder networking-base perl storage-devices
+389-ds: platform platform-placeholder networking-base perl storage-devices python3 python3-ecosystem
 
 apache-commons: platform platform-placeholder
 
 autotools: platform perl platform-placeholder
 
-bind: platform platform-placeholder
+bind: platform platform-placeholder python3 python3-ecosystem
 
 fonts: platform platform-placeholder
 
-freeipa: platform platform-placeholder java perl 389-ds bind krb5 sssd samba pki tomcat resteasy httpd storage-devices
+freeipa: platform platform-placeholder java perl 389-ds bind krb5 sssd samba pki tomcat resteasy httpd storage-devices python2 python2-ecosystem python3 python3-ecosystem
 
 hardware-support: platform platform-placeholder
 
@@ -33,7 +33,7 @@ java: platform platform-placeholder fonts
 
 krb5: platform platform-placeholder
 
-networking-base: platform platform-placeholder perl
+networking-base: platform platform-placeholder perl python3 python3-ecosystem
 
 perl: platform platform-placeholder
 
@@ -45,11 +45,13 @@ postgresql: platform platform-placeholder
 
 python2: platform platform-placeholder fonts
 
+python2-ecosystem: platform platform-placeholder python2
+
 python3-bootstrap: platform platform-placeholder fonts
 
 python3-ecosystem-bootstrap: platform platform-placeholder
 
-python3-ecosystem: platform platform-placeholder
+python3-ecosystem: platform platform-placeholder python3
 
 python3: platform platform-placeholder
 
@@ -59,9 +61,9 @@ ruby: platform platform-placeholder
 
 samba: platform platform-placeholder
 
-sssd: platform platform-placeholder samba
+sssd: platform platform-placeholder samba python3 python3-ecosystem
 
-storage-devices: platform platform-placeholder perl
+storage-devices: platform platform-placeholder perl python2 python2-ecosystem
 
 systemtap: platform perl platform-placeholder
 
