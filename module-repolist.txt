@@ -1,6 +1,7 @@
 389-ds
 autotools
 bind
+cloud-init
 freeipa
 httpd
 installer

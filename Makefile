@@ -17,6 +17,8 @@ autotools: platform perl platform-placeholder
 
 bind: platform platform-placeholder
 
+cloud-init: platform platform-placeholder python3 python3-ecosystem
+
 freeipa: platform platform-placeholder java perl 389-ds bind krb5 sssd samba pki tomcat resteasy httpd storage-devices
 
 httpd: platform platform-placeholder
