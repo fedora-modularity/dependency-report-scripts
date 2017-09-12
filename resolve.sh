@@ -54,7 +54,7 @@ resolve_arch() {
         done < $hintsfile
 
         get_toplevel_pkgs "$modulearchroot" |
-        xargs depchase -v -a $arch -c repos.cfg resolve $hints > $modulearchroot/depchase-$WHAT-failures.txt 2> $modulearchroot/depchase-$WHAT-relations.txt
+        xargs depchase -a $arch -c repos.cfg resolve $hints > $modulearchroot/depchase-$WHAT-failures.txt 2> $modulearchroot/depchase-$WHAT-relations.txt
         RC=$?
         if [ $RC -ne 0 ]; then
             echo "Depchase failures encountered for $module on $arch $WHAT:"

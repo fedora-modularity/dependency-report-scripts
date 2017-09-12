@@ -11,58 +11,64 @@ platform:
 	@echo Generating $@.
 	@./deps2.sh $@ $^
 
-389-ds: platform platform-placeholder networking-base perl
+389-ds: platform platform-placeholder networking-base perl python3 python3-ecosystem bind
+
+apache-commons: platform platform-placeholder java
 
 autotools: platform perl platform-placeholder
 
-bind: platform platform-placeholder
+bind: platform platform-placeholder python3 python3-ecosystem
+
+fonts: platform platform-placeholder
 
 cloud-init: platform platform-placeholder python3 python3-ecosystem
 
-freeipa: platform platform-placeholder java perl 389-ds bind krb5 sssd samba pki tomcat resteasy httpd storage-devices
+freeipa: platform platform-placeholder java perl 389-ds bind krb5 sssd samba pki tomcat resteasy httpd  python2 python2-ecosystem python3 python3-ecosystem
 
-httpd: platform platform-placeholder
+hardware-support: platform platform-placeholder
 
-installer: platform platform-placeholder
+httpd: platform platform-placeholder python2 python2-ecosystem
 
-java: platform platform-placeholder
+installer: platform platform-placeholder hardware-support
+
+java: platform platform-placeholder fonts X11-base
 
 krb5: platform platform-placeholder
 
-networking-base: platform platform-placeholder perl
+networking-base: platform platform-placeholder perl python3 python3-ecosystem
 
 perl: platform platform-placeholder
 
-pki: platform platform-placeholder java tomcat resteasy storage-devices
+pki: platform platform-placeholder java tomcat resteasy apache-commons
 
 platform-placeholder: platform
 
 postgresql: platform platform-placeholder
 
-python2: platform platform-placeholder
+python2: platform platform-placeholder fonts X11-base
 
-python3-bootstrap: platform platform-placeholder
+python2-ecosystem: platform platform-placeholder python2
+
+python3-bootstrap: platform platform-placeholder fonts
 
 python3-ecosystem-bootstrap: platform platform-placeholder
 
-python3-ecosystem: platform platform-placeholder
+python3-ecosystem: platform platform-placeholder python3
 
-python3: platform platform-placeholder
+python3: platform platform-placeholder fonts X11-base
 
-resteasy: platform platform-placeholder
+resteasy: platform platform-placeholder java apache-commons
 
 ruby: platform platform-placeholder
 
-samba: platform platform-placeholder
+samba: platform platform-placeholder python2 python2-ecosystem
 
-sssd: platform platform-placeholder samba
-
-storage-devices: platform platform-placeholder
-
-storaged: platform platform-placeholder
+sssd: platform platform-placeholder samba python3 python3-ecosystem
 
 systemtap: platform perl platform-placeholder
 
-tomcat: platform platform-placeholder
+tomcat: platform platform-placeholder java apache-commons
 
-X11-base: platform platform-placeholder
+udisks2: platform platform-placeholder krb5 python3
+
+X11-base: platform platform-placeholder fonts

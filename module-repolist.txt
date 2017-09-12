@@ -1,8 +1,11 @@
 389-ds
+apache-commons
 autotools
 bind
 cloud-init
+fonts
 freeipa
+hardware-support
 httpd
 installer
 java
@@ -19,7 +22,7 @@ ruby
 samba
 sssd
 storage-devices
-storaged
 systemtap
 tomcat
+udisks2
 X11-base
