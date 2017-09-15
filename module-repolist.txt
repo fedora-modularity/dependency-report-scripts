@@ -13,7 +13,6 @@ krb5
 networking-base
 perl
 pki
-platform-placeholder
 postgresql
 python2
 python3
