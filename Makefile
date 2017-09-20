@@ -41,8 +41,6 @@ perl: platform
 
 pki: platform  java tomcat resteasy apache-commons
 
-: platform
-
 postgresql: platform 
 
 python2: platform  fonts X11-base
