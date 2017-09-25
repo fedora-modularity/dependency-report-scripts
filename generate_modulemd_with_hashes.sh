@@ -18,13 +18,13 @@ data:
     dependencies:
         buildrequires:
 EOF
-        for dep in $(cat "$topdir/modules/$module/modular-build-deps.txt" | sed -e "s/^platform-placeholder$//g"); do
+        for dep in $(cat "$topdir/modules/$module/modular-build-deps.txt"); do
             echo "            $dep: $buildrequires_ref"
         done
         cat << EOF
         requires:
 EOF
-        for dep in $(cat "$topdir/modules/$module/modular-deps.txt" | sed -e "s/^platform-placeholder$//g"); do
+        for dep in $(cat "$topdir/modules/$module/modular-deps.txt"); do
             echo "            $dep: $requires_ref"
         done
         cat << EOF

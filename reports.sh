@@ -114,8 +114,7 @@ echo "Generating modulemd files..."
 modulemd_modules=$(ls "$topdir/modules" \
     | sed \
         -e "s/^bootstrap$//g" \
-        -e "s/^platform$//g" \
-        -e "s/^platform-placeholder$//g")
+        -e "s/^platform$//g")
 for module in $modulemd_modules; do
     {
         cat << EOF
@@ -130,13 +129,13 @@ data:
     dependencies:
         buildrequires:
 EOF
-        for dep in $(cat "$topdir/modules/$module/modular-build-deps.txt" | sed -e "s/^platform-placeholder$//g"); do
+        for dep in $(cat "$topdir/modules/$module/modular-build-deps.txt"); do
             echo "            $dep: $buildrequires_ref"
         done
         cat << EOF
         requires:
 EOF
-        for dep in $(cat "$topdir/modules/$module/modular-deps.txt" | sed -e "s/^platform-placeholder$//g"); do
+        for dep in $(cat "$topdir/modules/$module/modular-deps.txt"); do
             echo "            $dep: $requires_ref"
         done
         cat << EOF

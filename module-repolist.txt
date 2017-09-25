@@ -5,6 +5,7 @@ bind
 cloud-init
 fonts
 freeipa
+GNOME
 hardware-support
 httpd
 installer

@@ -21,7 +21,6 @@ for file in $files; do
             | sort -u \
             | comm -23 $base/$target/$arch/complete-$file - \
             > $base/$target/$arch/$file
-
     done
 done
 

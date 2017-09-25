@@ -9,8 +9,7 @@ case "$WHAT" in
         modules=$(ls "$topdir/modules" \
             | sed \
                 -e "s/^bootstrap$//g" \
-                -e "s/^platform$//g" \
-                -e "s/^platform-placeholder$//g")
+                -e "s/^platform$//g")
         get_toplevel_pkgs() {
             local modulearchroot="$1"
             sed -e "s/$/.src/g" < "$modulearchroot/runtime-source-packages-short.txt"

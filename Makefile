@@ -11,62 +11,64 @@ platform:
 	@echo Generating $@.
 	@./deps2.sh $@ $^
 
-389-ds: platform  networking-base perl python3 python3-ecosystem bind
+389-ds: platform networking-base perl python3 python3-ecosystem bind
 
-apache-commons: platform  java
+apache-commons: platform java
 
 autotools: platform perl 
 
-bind: platform  python3 python3-ecosystem
+bind: platform python3 python3-ecosystem
 
-fonts: platform 
+cloud-init: platform python3 python3-ecosystem
 
-cloud-init: platform  python3 python3-ecosystem
+fonts: platform
 
-freeipa: platform  java perl 389-ds bind krb5 sssd samba pki tomcat resteasy httpd  python2 python2-ecosystem python3 python3-ecosystem
+freeipa: platform java perl 389-ds bind krb5 sssd samba pki tomcat resteasy httpd  python2 python2-ecosystem python3 python3-ecosystem
 
-hardware-support: platform 
+GNOME: platform X11-base
 
-httpd: platform  python2 python2-ecosystem
+hardware-support: platform
 
-installer: platform  hardware-support
+httpd: platform python2 python2-ecosystem
 
-java: platform  fonts X11-base
+installer: platform hardware-support X11-base python3 python3-ecosystem networking-base perl # GNOME
 
-krb5: platform 
+java: platform fonts X11-base
 
-networking-base: platform  perl python3 python3-ecosystem
+krb5: platform
 
-perl: platform 
+networking-base: platform perl python3 python3-ecosystem
 
-pki: platform  java tomcat resteasy apache-commons
+perl: platform
 
-postgresql: platform 
+pki: platform java tomcat resteasy apache-commons
 
-python2: platform  fonts X11-base
+postgresql: platform
 
-python2-ecosystem: platform  python2
+python2: platform fonts X11-base
 
-python3-bootstrap: platform  fonts
+python2-ecosystem: platform python2
 
-python3-ecosystem-bootstrap: platform 
+python3-bootstrap: platform fonts
 
-python3-ecosystem: platform  python3
+python3-ecosystem-bootstrap: platform
 
-python3: platform  fonts X11-base
+python3-ecosystem: platform python3
 
-resteasy: platform  java apache-commons
+python3: platform fonts X11-base
 
-ruby: platform 
+resteasy: platform java apache-commons
 
-samba: platform  python2 python2-ecosystem
+ruby: platform
 
-sssd: platform  samba python3 python3-ecosystem
+samba: platform python2 python2-ecosystem
+
+sssd: platform samba python3 python3-ecosystem
 
 systemtap: platform perl 
 
-tomcat: platform  java apache-commons
+tomcat: platform java apache-commons
 
-udisks2: platform  krb5 python3
+udisks2: platform krb5 python3
 
-X11-base: platform  fonts
+X11-base: platform fonts perl autotools
