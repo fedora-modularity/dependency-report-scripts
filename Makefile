@@ -19,7 +19,7 @@ autotools: platform perl
 
 bind: platform python3 python3-ecosystem
 
-cloud-init: platform python3 python3-ecosystem
+cloud-init: platform python3 python3-ecosystem networking-base python2
 
 fonts: platform
 
@@ -31,7 +31,7 @@ hardware-support: platform
 
 httpd: platform python2 python2-ecosystem
 
-installer: platform hardware-support X11-base python3 python3-ecosystem networking-base perl # GNOME
+installer: platform hardware-support X11-base python3 python3-ecosystem networking-base perl
 
 java: platform fonts X11-base
 
@@ -71,4 +71,4 @@ tomcat: platform java apache-commons
 
 udisks2: platform krb5 python3
 
-X11-base: platform fonts perl autotools
+X11-base: platform fonts autotools

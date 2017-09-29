@@ -6,13 +6,13 @@ source ./config.sh
 ./build_deps.sh apache-commons   bootstrap
 ./build_deps.sh autotools   bootstrap
 ./build_deps.sh bind        bootstrap
-./build_deps.sh cloud-init  platform python3
+./build_deps.sh cloud-init  bootstrap
 ./build_deps.sh fonts       bootstrap
 ./build_deps.sh freeipa     bootstrap 389-ds bind sssd python2 python2-ecosystem python3 python3-ecosystem
 ./build_deps.sh GNOME       platform X11-base autotools
 ./build_deps.sh hardware-support  bootstrap
 ./build_deps.sh httpd       bootstrap
-./build_deps.sh installer   bootstrap  # platform X11-base python3 python3-ecosystem networking-base GNOME perl
+./build_deps.sh installer   bootstrap X11-base
 ./build_deps.sh java        bootstrap
 ./build_deps.sh krb5        bootstrap
 ./build_deps.sh networking-base  bootstrap
@@ -33,7 +33,7 @@ source ./config.sh
 ./build_deps.sh systemtap   bootstrap
 ./build_deps.sh tomcat      bootstrap
 ./build_deps.sh udisks2     bootstrap
-./build_deps.sh X11-base    platform autotools perl python3
+./build_deps.sh X11-base    bootstrap
 
 # I don't need build deps for these...
 excluded="platform bootstrap"
