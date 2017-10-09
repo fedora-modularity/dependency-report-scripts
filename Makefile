@@ -17,7 +17,7 @@ apache-commons: platform java
 
 autotools: platform perl 
 
-bind: platform python3 python3-ecosystem
+bind: platform python3 python3-ecosystem postgresql
 
 cloud-init: platform python3 python3-ecosystem networking-base python2
 
